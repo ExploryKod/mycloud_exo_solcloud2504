@@ -13,7 +13,7 @@ $password = $_GET['password'];
 
 // Execute query
 try {
-    $pdo = new PDO("dsn:mysql:host=localhost;dbname=users", username: "root", password: "new_password");
+    $pdo = new PDO("dsn:mysql:host=localhost;dbname=users", " username: root", "password: new_password");
 
     $query = $pdo->prepare("INSERT INTO users (username, password, ssh) VALUES (:username, :password, :ssh)");
 
