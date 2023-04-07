@@ -3,22 +3,28 @@
 $username = $_GET['username'];
 $password = $_GET['password'];
 
-$host = "localhost";
-$user = "root";
-$passwordBdd = "new_password";
-$dbname = "users";
+// $host = "localhost";
+// $user = "root";
+// $passwordBdd = "new_password";
+// $dbname = "users";
 
 // Create connection
-$conn = mysqli_connect($host, $user, $passwordBdd, $dbname);
 
-$sql = "INSERT INTO users (username, password, ssh) 
-VALUES ($username, $password, $ssh)";
 
 // Execute query
-if (mysqli_query($conn, $sql)) {
-    echo "Table users created successfully";
-} else {
-    echo "Error creating table: " . mysqli_error($conn);
+try {
+    $pdo = new PDO(dsn: "mysql:host=localhost;dbname=users", username: "root", password: "new_password");
+
+    $query = $pdo->prepare("INSERT INTO users (username, password, ssh) VALUES (:username, :password, :ssh)")
+
+    $query->execute([
+        ":username" => $username,
+        ":ssh" => $ssh,
+        ":password" => $password
+    ]);
+
+} catch (\Throwable $th) {
+    throw $th;
 }
 
 
