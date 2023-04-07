@@ -16,7 +16,7 @@ shell_exec("./createbdd.sh $username $password");
 
 echo "<h1 style='color: green;'>Le script pour créer le compte de <strong style='color: black'>$username</strong> a été appelé ! </h1>";
 
-shell_exec("./restartNginx.sh");
+// shell_exec("./restartNginx.sh");
 
 $host = "localhost";
 $user = "root";
